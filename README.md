@@ -1,12 +1,12 @@
-# 🚀 Speed Run Lisk — Deploy & Verify Your First Contracts
+# 🚀 Speed Run Lisk — Connect Your Contracts to Frontend
 
-This project is part of the **Lisk SEA Campaign Week 1 Challenge**, focused on deploying and verifying smart contracts on **Lisk Sepolia Testnet** using **Scaffold-Lisk**.
+This project is part of the **Lisk SEA Campaign Week 2 Challenge**, focused on connecting smart contracts on **Lisk Sepolia Testnet** to Frontend Next JS.
 
 ---
 
 ## 📖 Project Overview
 
-This project demonstrates how to compile, deploy, and verify two smart contracts — an **ERC20 Token (MyToken)** and an **ERC721 NFT (MyNFT)** — on the **Lisk Sepolia testnet**.
+This project demonstrates how to start the frontend local with smart contract — an **ERC20 Token (MyToken)** and an **ERC721 NFT (MyNFT)** — on the **Lisk Sepolia testnet**.
 
 ✅ **Verified Contracts**
 
@@ -14,6 +14,9 @@ This project demonstrates how to compile, deploy, and verify two smart contracts
 - **MyNFT (ERC721):** [0x61491AFaDabcf22E8e60d47352D8C4c974a36574](https://sepolia-blockscout.lisk.com/address/0x61491AFaDabcf22E8e60d47352D8C4c974a36574#code)
 
 These contracts were deployed and verified using **Hardhat** and **Blockscout** integration.
+
+✅ **Demo Url**
+https://lisk-week2.netlify.app/
 
 ---
 
@@ -23,6 +26,7 @@ These contracts were deployed and verified using **Hardhat** and **Blockscout** 
 
 ```
 git clone https://github.com/diananov11/Speed-Run-Lisk.git
+git switch week-2
 cd Speed-Run-Lisk
 ```
 
