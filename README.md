@@ -32,24 +32,11 @@ cd Speed-Run-Lisk
 yarn install
 ```
 
-### 3️⃣ Input your env in folder hardhat
+### 3️⃣ Start the frontend in local
 
 ```
-cd packages/hardhat
-cp .env.example .env // input your private key that contain eth in lisk sepolia testnet
+yarn start
 ```
 
-### 4️⃣ Deploy contracts in lisk sepolia testnet
-
-```
-yarn deploy --network liskSepolia // you must have eth in lisk sepolia testnet
-```
-
-### 5️⃣ Verify your contract
-
-```
-yarn hardhat-verify --network liskSepolia --contract contracts/MyToken.sol:MyToken <your contract>
-yarn hardhat-verify --network liskSepolia --contract contracts/MyNFT.sol:MyNFT <your contract>
-```
-
-check on blockscout ` sepolia-blockscout.lisk.com`
+Try to transfer token and mint the NFT
+![alt text](image_2025-10-30_20-17-34.png)
