@@ -1,12 +1,12 @@
-# 🚀 Speed Run Lisk — Connect Your Contracts to Frontend
+# 🚀 Speed Run Lisk — Display Contract Events & Transaction History
 
-This project is part of the **Lisk SEA Campaign Week 2 Challenge**, focused on connecting smart contracts on **Lisk Sepolia Testnet** to Frontend Next JS.
+This project is part of the **Lisk SEA Campaign Week 3 Challenge**, focused on create a simple events page that shows your contract activity and transaction history.
 
 ---
 
 ## 📖 Project Overview
 
-This project demonstrates how to start the frontend local with smart contract — an **ERC20 Token (MyToken)** and an **ERC721 NFT (MyNFT)** — on the **Lisk Sepolia testnet**.
+This project demonstrates how to start the frontend local and you can see the transaction history on event page and indexing the **Blockscout lisk sepolia**.
 
 ✅ **Verified Contracts**
 
@@ -16,7 +16,7 @@ This project demonstrates how to start the frontend local with smart contract �
 These contracts were deployed and verified using **Hardhat** and **Blockscout** integration.
 
 ✅ **Demo Url**
-https://lisk-week2.netlify.app/
+https://events-contract.netlify.app/events
 
 ---
 
@@ -26,7 +26,7 @@ https://lisk-week2.netlify.app/
 
 ```
 git clone https://github.com/diananov11/Speed-Run-Lisk.git
-git switch week-2
+git switch week-3
 cd Speed-Run-Lisk
 ```
 
@@ -42,5 +42,5 @@ yarn install
 yarn start
 ```
 
-Try to transfer token and mint the NFT
-![alt text](image_2025-10-30_20-17-34.png)
+Try to see the transaction history of contract MyToken and MyNFT
+![alt text](image_2025-10-30_20-57-13.png)
