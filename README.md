@@ -53,3 +53,7 @@ yarn hardhat-verify --network liskSepolia --contract contracts/MyNFT.sol:MyNFT <
 ```
 
 check on blockscout ` sepolia-blockscout.lisk.com`
+<img width="1355" height="511" alt="image_2025-10-30_18-16-21" src="https://github.com/user-attachments/assets/14c5a1de-715c-41c8-9fd4-8eb61fffea2c" />
+<img width="1339" height="584" alt="image_2025-10-30_18-17-02" src="https://github.com/user-attachments/assets/eb9fbdde-3c2e-47b9-b019-a88429425620" />
+
+
