@@ -45,3 +45,5 @@ yarn start
 ```
 
 Try to see, buy and sell NFTs
+![alt text](image_2025-10-31_22-53-50.png)
+![alt text](image_2025-10-31_22-53-26.png)
