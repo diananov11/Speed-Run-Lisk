@@ -1,6 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { WrapperBuilder } from "@redstone-finance/evm-connector";
+import { getSignersForDataServiceId } from "@redstone-finance/sdk";
+import { ethers } from "ethers";
 import { formatEther, parseEther } from "viem";
 import { useAccount } from "wagmi";
 import { Address } from "~~/components/scaffold-eth";
@@ -17,6 +20,11 @@ export const NFTCard = ({ tokenId }: NFTCardProps) => {
   const [listPrice, setListPrice] = useState("");
   const [isApproved, setIsApproved] = useState(false);
   const [isApproving, setIsApproving] = useState(false);
+  const [ethPriceUSD, setEthPriceUSD] = useState<number>(0);
+  const [isLoadingPrice, setIsLoadingPrice] = useState(false);
+
+  // Get PriceFeed contract info
+  const { data: priceFeedContract } = useDeployedContractInfo("PriceFeed");
 
   // Get NFT owner
   const { data: owner } = useScaffoldContractRead({
@@ -48,6 +56,43 @@ export const NFTCard = ({ tokenId }: NFTCardProps) => {
     functionName: "isApprovedForAll",
     args: [owner as `0x${string}`, marketplaceAddress as `0x${string}`],
   });
+
+  // Fetch ETH price from oracle
+  const fetchEthPrice = async () => {
+    if (!priceFeedContract || typeof window === "undefined" || !window.ethereum) {
+      return;
+    }
+
+    try {
+      setIsLoadingPrice(true);
+
+      // Create ethers provider and contract
+      const provider = new ethers.providers.Web3Provider(window.ethereum as any);
+      const contract = new ethers.Contract(priceFeedContract.address, priceFeedContract.abi, provider);
+
+      // Wrap contract with RedStone data
+      const wrappedContract = WrapperBuilder.wrap(contract).usingDataService({
+        dataPackagesIds: ["ETH"],
+        authorizedSigners: getSignersForDataServiceId("redstone-main-demo"),
+      });
+
+      // Get ETH price
+      const priceData = await wrappedContract.getEthPrice();
+      const formattedPrice = Number(priceData) / 1e8; // Convert from 8 decimals
+      setEthPriceUSD(formattedPrice);
+    } catch (error) {
+      console.error("Error fetching ETH price:", error);
+    } finally {
+      setIsLoadingPrice(false);
+    }
+  };
+
+  // Fetch price on mount and every 30 seconds
+  useEffect(() => {
+    fetchEthPrice();
+    const interval = setInterval(fetchEthPrice, 30000);
+    return () => clearInterval(interval);
+  }, [priceFeedContract]);
 
   // Update approval status
   useEffect(() => {
@@ -153,6 +198,7 @@ export const NFTCard = ({ tokenId }: NFTCardProps) => {
   const isOwner = owner?.toLowerCase() === connectedAddress?.toLowerCase();
   const isListed = listing?.isActive === true;
   const priceInEth = listing?.price ? formatEther(listing.price) : "0";
+  const priceInUSD = ethPriceUSD > 0 ? (parseFloat(priceInEth) * ethPriceUSD).toFixed(2) : "0.00";
 
   return (
     <>
@@ -177,7 +223,8 @@ export const NFTCard = ({ tokenId }: NFTCardProps) => {
             <div className="stats shadow mt-2">
               <div className="stat p-4">
                 <div className="stat-title text-xs">Price</div>
-                <div className="stat-value text-lg">{parseFloat(priceInEth).toFixed(4)} ETH</div>
+                {!isLoadingPrice && <div className="stat-value text-lg">{parseFloat(priceInEth).toFixed(4)} ETH</div>}
+                {ethPriceUSD > 0 && <div className="stat-desc">~${priceInUSD} USD</div>}
               </div>
             </div>
           )}
@@ -233,6 +280,11 @@ export const NFTCard = ({ tokenId }: NFTCardProps) => {
                 value={listPrice}
                 onChange={e => setListPrice(e.target.value)}
               />
+              {listPrice && ethPriceUSD > 0 && (
+                <label className="label">
+                  <span className="label-text-alt">~${(parseFloat(listPrice) * ethPriceUSD).toFixed(2)} USD</span>
+                </label>
+              )}
             </div>
             <div className="modal-action">
               <button className="btn" onClick={() => setShowListModal(false)}>
