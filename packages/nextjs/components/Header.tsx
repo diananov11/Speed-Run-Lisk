@@ -15,9 +15,7 @@ import {
 } from "@heroicons/react/24/outline";
 import {
   DappConsoleButton,
-  FaucetButton,
   RainbowKitCustomConnectButton,
-  SuperchainFaucetButton,
 } from "~~/components/scaffold-eth";
 import { useOutsideClick } from "~~/hooks/scaffold-eth";
 import { cn } from "~~/utils/cn";
