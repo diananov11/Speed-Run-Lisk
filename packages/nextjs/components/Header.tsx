@@ -10,6 +10,7 @@ import {
   ClockIcon,
   CurrencyDollarIcon,
   HomeIcon,
+  ShoppingCartIcon,
   SparklesIcon,
 } from "@heroicons/react/24/outline";
 import {
@@ -47,6 +48,11 @@ export const menuLinks: HeaderMenuLink[] = [
     label: "Events",
     href: "/events",
     icon: <ClockIcon className="h-4 w-4" />,
+  },
+  {
+    label: "Marketplace", // Add this entire object
+    href: "/marketplace",
+    icon: <ShoppingCartIcon className="h-4 w-4" />,
   },
   {
     label: "Debug Contracts",
@@ -133,8 +139,6 @@ export const Header = () => {
       </div>
       <div className="navbar-end flex-grow mr-4">
         <RainbowKitCustomConnectButton />
-        <FaucetButton />
-        <SuperchainFaucetButton />
         <DappConsoleButton />
       </div>
     </header>
