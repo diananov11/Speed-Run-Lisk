@@ -7,7 +7,8 @@ import { useScaffoldContractRead, useScaffoldContractWrite } from "~~/hooks/scaf
 import { notification } from "~~/utils/scaffold-eth";
 
 export const NFTCollection = () => {
-  const { address: connectedAddress } = useAccount();
+  const { address } = useAccount();
+  const connectedAddress = address as `0x${string}`;
   const [mintToAddress, setMintToAddress] = useState("");
 
   const { data: nftName } = useScaffoldContractRead({
@@ -34,7 +35,7 @@ export const NFTCollection = () => {
   const { writeAsync: writeMyNFTAsync } = useScaffoldContractWrite({
     contractName: "MyNFT",
     functionName: "mint",
-    args: [mintToAddress || connectedAddress],
+    args: [(mintToAddress as `0x${string}`) || connectedAddress],
   });
 
   const handleMint = async () => {
@@ -47,7 +48,7 @@ export const NFTCollection = () => {
 
     try {
       await writeMyNFTAsync({
-        args: [targetAddress],
+        args: [targetAddress as `0x${string}`],
       });
 
       notification.success("NFT minted successfully!");
