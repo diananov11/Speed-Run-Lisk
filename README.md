@@ -18,7 +18,7 @@ This project demonstrates how to start the frontend local and you can see list o
 These contracts were deployed and verified using **Hardhat** and **Blockscout** integration.
 
 ✅ **Demo Url**
-https://nft-marketplace.netlify.app/events
+[https://nft-marketplace.netlify.app/events](https://nftmarketplacelisk.netlify.app/marketplace)
 
 ---
 
